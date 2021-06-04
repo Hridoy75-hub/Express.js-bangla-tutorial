@@ -9,12 +9,17 @@ const port = 5000
 
 
 
-mongoose.connect('mongodb://localhost:27017/tt', { useNewUrlParser: true, useUnifiedTopology: true })
+ mongoose.connect('mongodb://localhost:27017/my_database', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useFindAndModify: false,
+  useCreateIndex: true
+})
 app.use(bodyParser.json())
 
 
 mongoose.connection.once('open', () => {
-  console.log('db connected');
+  console.log('db connected')
 })
 
 app.use('/vehe', Veherouter)
@@ -90,3 +95,4 @@ app.get('/cooki', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
+
