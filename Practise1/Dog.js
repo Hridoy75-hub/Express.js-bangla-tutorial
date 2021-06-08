@@ -4,9 +4,11 @@ const dogrouter =express.Router();
 
 dogrouter.post('/name', (req, res) => {
     console.log(req.body)
-    var k = new ktablescheama(req.body)
-    k.save()
-    res.send(k);
+    let JSONData = req.body;
+    let name= JSONData["name"]
+    let city = JSONData["city"]
+    res.send(name +" "+ city);
+    
 })
 dogrouter.get('/all', async (req, res) => {
     try {

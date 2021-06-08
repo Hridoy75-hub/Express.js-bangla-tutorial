@@ -9,7 +9,7 @@ const port = 5000
 
 
 
- mongoose.connect('mongodb://localhost:27017/my_database', {
+ mongoose.connect('mongodb://localhost:27017/kmodel', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
   useFindAndModify: false,
@@ -95,4 +95,3 @@ app.get('/cooki', (req, res) => {
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)
 })
-

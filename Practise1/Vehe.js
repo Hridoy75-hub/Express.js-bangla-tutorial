@@ -1,11 +1,32 @@
 const express = require('express')
 const vrouter = express.Router();
+const multer  = require('multer')
+const app = express()
 
-vrouter.get('/name', (req, res) => {
-    res.send('vehe name');
+
+const storage = multer.diskStorage({
+    destination: function (req, file, callback) {
+        callback(null, './uploads');
+    },
+    filename: function (req, file, callback) {
+        callback(null,file.originalname)
+    }
 })
-vrouter.get('/age', (req, res) => {
-    res.send('vehe age');
-})
+var upload = multer({ storage: storage }).single('myfile')
+
+
+//upload form data
+vrouter.post('/upload', function(req, res){
+    upload(req, res,function(error){
+        if(error) {
+            res.send("file upload fail")
+        }
+        else{
+            res.send("file upload success")
+        }
+         
+    })
+    
+});
 
 module.exports = vrouter;
